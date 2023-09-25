@@ -1,0 +1,49 @@
+# 端口号
+port: '6000'
+# 数据库配置
+dataBase:
+  # 数据库地址
+  host: '127.0.0.1:3306'
+  # 数据库名
+  schema: 'gin_todos'
+  # 用户名
+  userName: 'root'
+  # 密码
+  password: '555555'
+# 日志配置
+logConfig:
+  # 日志存储位置
+  path: 'logs/'
+  # 日志名称
+  name: 'gin.log'
+# 私钥
+privateKey:
+  # token私钥
+  token: 'bce703d8-9d47-4724-aa78-27d412c614a5'
+  # 密码私钥
+  pwd: 'ce351a70-c5ee-475f-acf9-69a7a8d59091'
+  # 密码盐值
+  pwdSalt: 10
+# 正则
+regular:
+  # 电话号码正则
+  phone: '^(13[0-9]|14[5-9]|15[0-35-9]|16[6]|17[0-8]|18[0-9]|19[0-9]|147|166|17[0-1]|162)\d{8}$'
+  # 邮箱正则
+  email: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+# token配置
+tokenConfig:
+  # 不验证的接口地址
+  noVerify:
+    - '/api/user/phoneOccupy'
+    - '/api/user/emailOccupy'
+    - '/api/user/register'
+    - '/api/user/phoneLogin'
+    - '/api/user/sendEmailCode'
+    - '/api/user/forgetPassword'
+# 邮箱配置
+emailConfig:
+  emailAddress: 'co-blog@qq.com'
+  emailName: 'CoBlog站长'
+  password: 'qgiegwujfquqbjfd'
+  smtpServer: 'smtp.qq.com'
+  smtpPort: 587
