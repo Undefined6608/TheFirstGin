@@ -122,3 +122,6 @@ time="2023-10-01T16:36:41+08:00" level=info msg="| 401 |      1.1234ms |       1
 time="2023-10-01T16:38:27+08:00" level=info msg="| 200 |     54.8776ms |       127.0.0.1 | POST | /api/user/phoneLogin |"
 time="2023-10-01T16:38:49+08:00" level=info msg="| 200 |         621µs |       127.0.0.1 | GET | /api/user/getUserInfo |"
 time="2023-10-01T16:38:55+08:00" level=info msg="| 200 |         945µs |       127.0.0.1 | POST | /api/user/logout |"
+time="2023-10-01T16:41:39+08:00" level=info msg="| 200 |     61.3058ms |       127.0.0.1 | POST | /api/user/phoneLogin |"
+time="2023-10-01T16:41:58+08:00" level=info msg="| 200 |       911.6µs |       127.0.0.1 | GET | /api/user/getUserInfo |"
+time="2023-10-01T16:42:07+08:00" level=info msg="| 200 |      1.1733ms |       127.0.0.1 | POST | /api/user/logout |"
