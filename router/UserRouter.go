@@ -23,5 +23,8 @@ func UserRouter(router *gin.RouterGroup) {
 	router.POST("/sendEmailCode", controller.SendEmailCode)
 	// 忘记密码
 	router.POST("/forgetPassword", controller.ForgetPassword)
-
+	// 获取用户信息
+	router.GET("/getUserInfo", controller.GetUserInfo)
+	// 退出登录
+	router.POST("/logout", controller.Logout)
 }

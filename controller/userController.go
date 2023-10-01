@@ -316,3 +316,56 @@ func ForgetPassword(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, utils.ResultType(http.StatusOK, "找回成功！", nil))
 }
+
+// GetUserInfo /** 获取用户信息
+func GetUserInfo(c *gin.Context) {
+	// 获取用户信息
+	user, _ := c.Get("user")
+	// 判断用户信息是否存在
+	if user == nil {
+		c.JSON(http.StatusBadRequest, utils.ResultType(http.StatusBadRequest, "登陆失效，请重新登录！", nil))
+		return
+	}
+	// 将user转化为 TokenParam类型
+	tokenParam, ok := user.(*config.TokenParam)
+	// 判断是否转化正确
+	if !ok {
+		c.JSON(http.StatusBadRequest, utils.ResultType(http.StatusBadRequest, "登陆失效，请重新登录！", nil))
+		return
+	}
+	// 返回用户信息
+	c.JSON(http.StatusOK, utils.ResultType(http.StatusOK, "获取成功！", request.SysUserResponse{
+		UID:           tokenParam.UserInfo.UID,
+		Name:          tokenParam.UserInfo.Name,
+		Phone:         tokenParam.UserInfo.Phone,
+		HeadSculpture: tokenParam.UserInfo.HeadSculpture,
+		Email:         tokenParam.UserInfo.Email,
+		Power:         tokenParam.UserInfo.Power,
+	}))
+}
+
+// Logout /** 退出登录
+func Logout(c *gin.Context) {
+	// 获取用户信息
+	user, _ := c.Get("user")
+	// 判断用户信息是否存在
+	if user == nil {
+		c.JSON(http.StatusBadRequest, utils.ResultType(http.StatusBadRequest, "登陆失效，请重新登录！", nil))
+		return
+	}
+	// 将user转化为 TokenParam类型
+	tokenParam, ok := user.(*config.TokenParam)
+	// 判断是否转化正确
+	if !ok {
+		c.JSON(http.StatusBadRequest, utils.ResultType(http.StatusBadRequest, "登陆失效，请重新登录！", nil))
+		return
+	}
+	// 删除sys_token表里的用户体条目
+	err := model.DeleteTokenById(tokenParam.UserInfo.UID)
+	// 删除失败
+	if err != nil {
+		c.JSON(http.StatusBadRequest, utils.ResultType(http.StatusBadRequest, "退出失败！", nil))
+	}
+	// 返回数据
+	c.JSON(http.StatusOK, utils.ResultType(http.StatusOK, "退出成功！", nil))
+}

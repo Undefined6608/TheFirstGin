@@ -41,6 +41,13 @@ func QueryTokenById(userID uint32) []entity.SysToken {
 	return token
 }
 
+// QueryIdByToken /** 通过用户ID查询Token
+func QueryIdByToken(tokenStr string) []entity.SysToken {
+	var token []entity.SysToken
+	pool.Where("token=?", tokenStr).Find(&token)
+	return token
+}
+
 // SaveTokenSQL /** 创建Token项
 func SaveTokenSQL(token entity.SysToken) error {
 	err := pool.Create(&token).Error
@@ -50,6 +57,12 @@ func SaveTokenSQL(token entity.SysToken) error {
 // UpdateTokenSQl /** 更新Token项
 func UpdateTokenSQl(token entity.SysToken) error {
 	err := pool.Model(&entity.SysToken{}).Where("user_id", token.ID).Update("token", token.Token).Error
+	return err
+}
+
+// DeleteTokenById /** 删除Token
+func DeleteTokenById(userID uint32) error {
+	err := pool.Exec("DELETE FROM sys_token WHERE user_id = ?", userID).Error
 	return err
 }
 
